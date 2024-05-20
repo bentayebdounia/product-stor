@@ -1,9 +1,8 @@
 import { ReactNode } from "react";
 import { Box, Container, Paper } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-
 import RequireAuth from "@/lib/features/authentication/requireAuth";
-import AppBar from "@/app/components/appBar";
+import AppAppBar from "@/app/components/appAppBar";
 
 type Props = {
   children: ReactNode;
@@ -16,10 +15,10 @@ export default function PortalLayout({ children, params }: Props) {
         {/* Include shared UI here e.g. a header or sidebar */}
         <Box sx={{ pt: 1 }}>
           <Box width={"100%"} >
-            <AppBar />{" "}
+            <AppAppBar  />
           </Box>
           <CssBaseline />
-          <Box component="main" sx={{ flexGrow: 1,display: "flex" }}>
+          <Box component="main" sx={{ flexGrow: 1, pt:10,display: "flex" }}>
             <Container maxWidth={false}>{children}</Container>
           </Box>
         </Box>

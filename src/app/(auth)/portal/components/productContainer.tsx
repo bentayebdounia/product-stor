@@ -3,7 +3,7 @@ import { useProduct } from "@/lib/features/product/productSelectors";
 import { fetchAllProduct } from "@/lib/features/product/productThunks";
 import { useAppDispatch } from "@/lib/hook";
 import { Product } from "@/lib/interfaces/product";
-import SearchBar from "@/lib/styles/searchBar";
+import FilterAddProduct from "@/app/(auth)/portal/components/filterAddProduct";
 import { Grid, SelectChangeEvent } from "@mui/material";
 import { useEffect, useState } from "react";
 import ProductCard from "./productCard";
@@ -30,7 +30,7 @@ export function ProductContainer() {
   return (
     <Grid container sx={{px:4}} >
       <Grid item xs={12}>
-        <SearchBar
+        <FilterAddProduct
           setSearchTerm={setSearchTerm}
           handleChangeFilter={handleChangeFilter}
         />{" "}

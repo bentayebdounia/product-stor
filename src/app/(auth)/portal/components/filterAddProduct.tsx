@@ -1,20 +1,16 @@
 "use client";
 import * as React from "react";
-import SearchIcon from "@mui/icons-material/Search";
 import {
   Button,
   FormControl,
   Grid,
-  InputAdornment,
   MenuItem,
   Select,
-  TextField,
   Typography,
 } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 
-export default function SearchBar({
-  setSearchTerm,
+export default function FilterAddProduct({
   handleChangeFilter,
   filterStatus,
 }: any) {
@@ -28,29 +24,8 @@ export default function SearchBar({
       justifyContent={"start"}
       sx={{ marginTop: "5px", marginBottom: "20px", px:7 }}
     >
-      <Grid item xs={8}>
-        <FormControl sx={{ width: "100%" }}>
-          <TextField
-            id="outlined-start-adornment"
-            placeholder={"search"}
-            size="small"
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-            }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </FormControl>
-        
-          
-        
-      </Grid>
-      <Grid item xs={4} container direction="row" justifyContent="flex-end">
+      
+      <Grid item xs={12} container direction="row" justifyContent="flex-start">
       <FormControl sx={{ minWidth: 100 }}>
             <Select
               sx={{
