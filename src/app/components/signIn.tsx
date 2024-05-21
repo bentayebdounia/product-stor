@@ -16,6 +16,7 @@ import { userLogin } from "@/lib/features/authentication/authenticationThunks";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuthentication } from "@/lib/features/authentication/authenticationSelectors";
+import Image from "next/image";
 export default function SignIn() {
   const { access_token, error } = useAuthentication();
   const router = useRouter();
@@ -43,7 +44,7 @@ export default function SignIn() {
     } else if (error) {
       toast.error("failed_login", { position: "top-left" });
     }
-  }, [error,router,access_token]);
+  }, [error, router, access_token]);
 
   return (
     <>
@@ -62,8 +63,24 @@ export default function SignIn() {
             p: 3,
           }}
         >
-          
-          <Typography component="h1" variant="h4" py={3}  >
+          <Image
+            src={"/product-store-icon.png"}
+            width={50}
+            height={50}
+            alt=""
+          />
+          <Typography
+            component="h1"
+            variant="h4"
+            pt={1}
+            pb={3}
+            sx={{
+              paddingLeft: "10px",
+              background: "linear-gradient(to left,#007baa , #8e24aa)",
+              backgroundClip: "text",
+              color: "transparent",
+            }}
+          >
             Product Store
           </Typography>
           <Box
@@ -95,10 +112,6 @@ export default function SignIn() {
               onChange={handleChange}
               value={values.password}
             />
-            {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
             <Button
               type="submit"
               fullWidth
@@ -114,13 +127,7 @@ export default function SignIn() {
             >
               LogIn
             </Button>
-            <Grid container>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+           
           </Box>
         </Box>
       </Container>

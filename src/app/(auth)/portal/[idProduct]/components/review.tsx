@@ -7,7 +7,7 @@ export default function Review({ data }: any) {
         item
         xs={3}
         container
-        bgcolor={"#d7a8df"}
+        bgcolor={"#8e24aa3d"}
         borderRadius={"10px"}
         direction="row"
         justifyContent="space-between"
@@ -19,7 +19,7 @@ export default function Review({ data }: any) {
         <Grid item xs={2} display={"flex"} justifyContent={"start"}>
           <Avatar
             sx={{
-              bgcolor: "#8e24aa",
+              bgcolor: "#8e24aaa8",
               marginLeft: "15px",
               alignItems: "center",
             }}

@@ -270,12 +270,12 @@ export default function DetailProduct({ idProduct }: any) {
                       >
                         Category
                       </Typography>
-                      <FormControl sx={{ minWidth: 100 }}>
+                      <FormControl sx={{ width: "100%" }}>
                         <Select
                           sx={{
                             alignItems: "center",
                             height: 40,
-                            width: 170,
+                            width: "70%",
                             backgroundColor: "white",
                             borderColor: "white",
                             color: "black",
@@ -422,7 +422,7 @@ export default function DetailProduct({ idProduct }: any) {
             </Grid>
           </>
         )}
-        {!edit && (
+        {!edit && !isLoading && (
           <>
             <Typography variant="h5" pb={2} color="#8e24aa">
               Reviews{" "}

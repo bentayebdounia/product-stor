@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { updateProductSearchValue } from "@/lib/features/product/productSlice";
+import Image from "next/image";
 function MenuUser(props: any) {
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -43,7 +44,7 @@ function MenuUser(props: any) {
             },
           }}
         >
-          <Avatar sx={{ bgcolor: "lightgrey", marginLeft: "15px" }} />
+          <Avatar sx={{ bgcolor: "#8e24aaa8", marginLeft: "15px" }} />
         </IconButton>
       </Tooltip>
       <Menu
@@ -97,22 +98,31 @@ export default function AppAppBar() {
       >
         <Toolbar>
           {/* <Image src={icon} priority={false} width="30" height="30" alt=""  /> */}
-
+          <Image
+            src={"/product-store-icon.png"}
+            width="30"
+            height="30"
+            alt=""
+          />
           <Typography
             variant="h5"
             sx={{
-              color: "black",
               paddingLeft: "10px",
+              background: "linear-gradient(to left, #007baa , #8e24aa)",
+              backgroundClip: "text",
+              color: "transparent",
             }}
           >
             Product Store
           </Typography>
-          <Link href={"/portal"} style={{ textDecoration: "none" }}>
+          <Link
+            href={"/portal"}
+            style={{ textDecoration: "none", marginLeft: 10 }}
+          >
             <Typography
               sx={{
                 color: "black",
                 fontSize: "16px",
-                paddingLeft: 10,
               }}
             >
               Home
