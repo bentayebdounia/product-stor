@@ -50,8 +50,7 @@ export function ProductContainer() {
         )}
         {searchValue !== "" && (
           <>
-        
-            {product?.filter((prod: Product) => searchValue.toLowerCase().indexOf(prod.title.toLowerCase())!==-1)
+            {product?.filter((prod: Product) => prod.title.toLowerCase().includes(searchValue.toLowerCase())) 
               .map((row: Product) => (
                 <ProductCard key={row.id} product={row} />
               ))}

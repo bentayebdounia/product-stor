@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 export default function ProductCard({ product }: any) {
   const pathname = usePathname();
   return (
-    <Card sx={{ width: 200, height: 300, m: 2 }}>
+    <Card sx={{ width: 200, height: 300, m: 2 ,boxShadow:" 0px 2px 1px -1px #d7a8df, 0px 1px 1px 0px #d7a8df, 0px 1px 3px 0px #8e24aa" }}>
       <CardMedia
         component="img"
         height={100}
@@ -59,12 +59,13 @@ export default function ProductCard({ product }: any) {
               size="small"
               fullWidth
               sx={{
-                bgcolor: "#d7a8df",
-                color: "#8e24aa",
+                bgcolor: "#8e24aa",
+                color: "white",
+                
                 mb:1,
                 fontWeight: "bold",
                 "&.MuiButtonBase-root:hover": {
-                  bgcolor: "#d7a8df",
+                  bgcolor: "#8e24aa",
                 },
               }}
               style={{ textDecoration: "none" }}
