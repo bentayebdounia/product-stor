@@ -10,52 +10,65 @@ export default function ProductCard({ product }: any) {
   const pathname = usePathname();
   return (
     <Card sx={{ width: 200, height: 300, m: 2 }}>
-      
-        <CardMedia
-          component="img"
-          height={100}
-          width={100}
-          image={product.image}
-          alt=""
-        />
-        <CardContent sx={{height: 150}} >
-          <Grid>
-            <Grid item xs={12}>
-              <Typography
-                gutterBottom
-                sx={{ fontSize: 16, fontWeight: "bold" }}
-                component="div"
-              >
-                {product.category}
-              </Typography>
-            </Grid>
-            <Grid item xs={12} >
-              <Typography
-                gutterBottom
-                sx={{
-                  fontSize: 16,
-                  display: "-webkit-box",
-                  overflow: "hidden",
-                  WebkitBoxOrient: "vertical",
-                  WebkitLineClamp: 3,
-                }}
-                component="div"
-              >
-                {product.title}
-              </Typography>
-            </Grid>
+      <CardMedia
+        component="img"
+        height={100}
+        width={100}
+        image={product.image}
+        alt=""
+      />
+      <CardContent sx={{ height: 150 }}>
+        <Grid>
+          <Grid item xs={12}>
+            <Typography
+              gutterBottom
+              sx={{ fontSize: 16, fontWeight: "bold" }}
+              component="div"
+            >
+              {product.category}
+            </Typography>
           </Grid>
-        </CardContent>
-      
-      <CardActions sx={{height: 50}} >
+          <Grid item xs={12}>
+            <Typography
+              gutterBottom
+              sx={{
+                fontSize: 16,
+                display: "-webkit-box",
+                overflow: "hidden",
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: 3,
+              }}
+              component="div"
+            >
+              {product.title}
+            </Typography>
+          </Grid>
+        </Grid>
+      </CardContent>
+
+      <CardActions sx={{ height: 50 }}>
         <Grid container>
           <Grid item xs={12}>
             <Typography variant="body2" px={1} color="text.secondary">
               {product.price} $
             </Typography>
           </Grid>
-          <Grid  item xs={12}>
-            <Button href={`${pathname}/${product.id}`} size="small" sx={{ color: "#af52b" }}>
+          <Grid item xs={12} >
+            <Button 
+              href={`${pathname}/${product.id}`}
+              size="small"
+              fullWidth
+              sx={{
+                bgcolor: "#d7a8df",
+                color: "#8e24aa",
+                mb:1,
+                fontWeight: "bold",
+                "&.MuiButtonBase-root:hover": {
+                  bgcolor: "#d7a8df",
+                },
+              }}
+              style={{ textDecoration: "none" }}
+            >
               Detail
             </Button>
           </Grid>

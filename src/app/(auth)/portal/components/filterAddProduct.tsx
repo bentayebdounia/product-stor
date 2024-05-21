@@ -29,10 +29,10 @@ export default function FilterAddProduct({
       container
       direction="row"
       display={"flex"}
-      justifyContent={"start"}
+      justifyContent={"end"}
       sx={{ marginTop: "5px", marginBottom: "20px", px: 7 }}
     >
-      <Grid item xs={12} container direction="row" justifyContent="flex-start">
+      <Grid item xs={12} container direction="row" justifyContent="flex-end">
         <FormControl sx={{ minWidth: 100 }}>
           <Select
             sx={{
@@ -48,17 +48,16 @@ export default function FilterAddProduct({
             value={filterCategory}
             onChange={handleChangeFilter}
             displayEmpty
-           > 
-          
-          <MenuItem value={""}>
-                <Typography sx={{ color: "grey" }}>Filter</Typography>
+          >
+            <MenuItem value={""}>
+              <Typography sx={{ color: "grey" }}>Filter</Typography>
+            </MenuItem>
+            {category?.map((value: any, index: number) => (
+              <MenuItem key={index} value={value}>
+                {" "}
+                {value}
               </MenuItem>
-              {category?.map((value: any, index: number) => (
-                <MenuItem key={index} value={value}>
-                  {" "}
-                  {value}
-                </MenuItem>
-              ))}
+            ))}
           </Select>
         </FormControl>
         <Button
