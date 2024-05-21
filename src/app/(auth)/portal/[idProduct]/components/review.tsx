@@ -1,6 +1,6 @@
 import { Avatar, Grid, Typography } from "@mui/material";
 
-export default function Review() {
+export default function Review({ data }: any) {
   return (
     <>
       <Grid
@@ -16,18 +16,30 @@ export default function Review() {
         mb={1}
         padding={1}
       >
-        <Grid item xs={2} display={'flex'} justifyContent={'start'} >
-          <Avatar sx={{ bgcolor: "#8e24aa", marginLeft: "15px", alignItems:'center' }} />
+        <Grid item xs={2} display={"flex"} justifyContent={"start"}>
+          <Avatar
+            sx={{
+              bgcolor: "#8e24aa",
+              marginLeft: "15px",
+              alignItems: "center",
+            }}
+          />
         </Grid>
         <Grid item xs={9}>
           <Typography sx={{ fontSize: "20px", display: "inline" }}>
             {" "}
-            
-            Name
+            {data.name}
           </Typography>
-          <Typography sx={{ fontSize: "16px" }}>
-            Review..............................
-            ....................................
+          <Typography
+            sx={{
+              fontSize: "16px",
+              display: "-webkit-box",
+              overflow: "hidden",
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: 3,
+            }}
+          >
+            {data.review}
           </Typography>
         </Grid>
       </Grid>

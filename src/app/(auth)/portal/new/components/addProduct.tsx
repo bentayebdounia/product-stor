@@ -91,7 +91,7 @@ export default function AddProduct() {
             setTitleProduct("");
             setPriceProduct("");
             setDescriptionProduct("");
-            setProductCategory("")
+            setProductCategory("");
           }}
         >
           Cancel
@@ -116,33 +116,42 @@ export default function AddProduct() {
               direction="row"
               justifyContent="flex-start"
             >
-              <FormControl sx={{ minWidth: 100 }}>
-                <Select
-                  sx={{
-                    alignItems: "center",
-                    height: 40,
-                    width: 170,
-                    backgroundColor: "white",
-                    borderColor: "white",
-                    color: "black",
-                  }}
-                  variant="outlined"
-                  id="status-select"
-                  value={productCategory}
-                  onChange={handleChangeProductCategory}
-                  displayEmpty
+              <Grid item xs={12} marginLeft={4} marginTop={3}>
+                <Typography
+                  variant="subtitle1"
+                  color="secondary.700"
+                  fontWeight={"bold"}
                 >
-                  <MenuItem value={""}>
-                    <Typography sx={{ color: "grey" }}>Filter</Typography>
-                  </MenuItem>
-                  {category?.map((value: any, index: number) => (
-                    <MenuItem key={index} value={value}>
-                      {" "}
-                      {value}
+                  Category
+                </Typography>
+                <FormControl sx={{ minWidth: 100 }}>
+                  <Select
+                    sx={{
+                      alignItems: "center",
+                      height: 40,
+                      width: 170,
+                      backgroundColor: "white",
+                      borderColor: "white",
+                      color: "black",
+                    }}
+                    variant="outlined"
+                    id="status-select"
+                    value={productCategory}
+                    onChange={handleChangeProductCategory}
+                    displayEmpty
+                  >
+                    <MenuItem value={""}>
+                      <Typography sx={{ color: "grey" }}>Filter</Typography>
                     </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+                    {category?.map((value: any, index: number) => (
+                      <MenuItem key={index} value={value}>
+                        {" "}
+                        {value}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
             </Grid>
             <Grid item xs={12} marginLeft={4} marginTop={3}>
               <Typography

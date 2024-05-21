@@ -32,6 +32,7 @@ import { useCategory } from "@/lib/features/category/categorySelectors";
 import { fetchAllCategory } from "@/lib/features/category/categoryThunks";
 import StarIcon from "@mui/icons-material/Star";
 import Review from "./review";
+import { dataReview } from "./dataReview";
 export default function DetailProduct({ idProduct }: any) {
   const { currentProduct, updateProductSuccess, isLoading } = useProduct();
   const router = useRouter();
@@ -233,11 +234,11 @@ export default function DetailProduct({ idProduct }: any) {
               padding={3}
             >
               <Grid item xs={7}>
-                <Typography variant="h5" sx={{ fontWeight: "bold", py: 1 }}>
-                  {currentProduct?.category}
-                </Typography>
                 {edit === false && (
                   <>
+                    <Typography variant="h5" sx={{ fontWeight: "bold", py: 1 }}>
+                      {currentProduct?.category}
+                    </Typography>
                     <Typography sx={{ fontWeight: "bold", py: 1 }}>
                       {currentProduct?.title}
                     </Typography>
@@ -261,7 +262,14 @@ export default function DetailProduct({ idProduct }: any) {
                 )}
                 {edit && (
                   <>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} marginLeft={4} marginTop={3}>
+                      <Typography
+                        variant="subtitle1"
+                        color="secondary.700"
+                        fontWeight={"bold"}
+                      >
+                        Category
+                      </Typography>
                       <FormControl sx={{ minWidth: 100 }}>
                         <Select
                           sx={{
@@ -390,6 +398,7 @@ export default function DetailProduct({ idProduct }: any) {
                   </>
                 )}
               </Grid>
+
               <Grid
                 item
                 xs={5}
@@ -413,12 +422,24 @@ export default function DetailProduct({ idProduct }: any) {
             </Grid>
           </>
         )}
-        <Typography variant="h5" pb={2} color="#8e24aa" >Reviews</Typography>
-        <Grid container spacing={1} display={'flex'} justifyContent={'space-around'} >
-          {[...Array(3)].map((_, index) => (
-            <Review key={index} />
-          ))}
-        </Grid>
+        {!edit && (
+          <>
+            <Typography variant="h5" pb={2} color="#8e24aa">
+              Reviews{" "}
+            </Typography>
+            <Grid
+              container
+              spacing={1}
+              display={"flex"}
+              justifyContent={"space-around"}
+              mb={3}
+            >
+              {dataReview.map((row) => (
+                <Review key={row.id} data={row} />
+              ))}
+            </Grid>
+          </>
+        )}
       </Container>
     </>
   );
