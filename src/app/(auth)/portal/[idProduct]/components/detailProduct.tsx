@@ -31,6 +31,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useCategory } from "@/lib/features/category/categorySelectors";
 import { fetchAllCategory } from "@/lib/features/category/categoryThunks";
 import StarIcon from "@mui/icons-material/Star";
+import Review from "./review";
 export default function DetailProduct({ idProduct }: any) {
   const { currentProduct, updateProductSuccess, isLoading } = useProduct();
   const router = useRouter();
@@ -412,6 +413,12 @@ export default function DetailProduct({ idProduct }: any) {
             </Grid>
           </>
         )}
+        <Typography variant="h5" pb={2} color="#8e24aa" >Reviews</Typography>
+        <Grid container spacing={1} display={'flex'} justifyContent={'space-around'} >
+          {[...Array(3)].map((_, index) => (
+            <Review key={index} />
+          ))}
+        </Grid>
       </Container>
     </>
   );
