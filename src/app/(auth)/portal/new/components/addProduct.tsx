@@ -2,24 +2,20 @@
 import {
   Button,
   Container,
+  FormControl,
   Grid,
-  Menu,
   MenuItem,
+  Select,
+  SelectChangeEvent,
   TextField,
-  Tooltip,
   Typography,
 } from "@mui/material";
-import LocalSeeIcon from "@mui/icons-material/LocalSee";
 import { useEffect, useState } from "react";
-import {
-  createNewProduct,
-  deleteProduct,
-  fetchAllProductById,
-  updateProduct,
-} from "@/lib/features/product/productThunks";
+import { createNewProduct } from "@/lib/features/product/productThunks";
 import { useAppDispatch } from "@/lib/hook";
-
 import { useRouter } from "next/navigation";
+import { useCategory } from "@/lib/features/category/categorySelectors";
+import { fetchAllCategory } from "@/lib/features/category/categoryThunks";
 
 export default function AddProduct() {
   const router = useRouter();
@@ -27,7 +23,12 @@ export default function AddProduct() {
   const [priceProduct, setPriceProduct] = useState("");
   const [imageProduct, setImageProduct] = useState("");
   const [descriptionProduct, setDescriptionProduct] = useState("");
+  const [productCategory, setProductCategory] = useState("");
+  const { category } = useCategory();
   const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchAllCategory());
+  }, [dispatch]);
 
   const handleTitleProductChange = (event: any) => {
     setTitleProduct(event.target.value);
@@ -40,6 +41,9 @@ export default function AddProduct() {
   };
   const handleDescriptionProductChange = (event: any) => {
     setDescriptionProduct(event.target.value);
+  };
+  const handleChangeProductCategory = (event: SelectChangeEvent) => {
+    setProductCategory(event.target.value);
   };
 
   return (
@@ -62,8 +66,8 @@ export default function AddProduct() {
                 title: titleProduct,
                 price: priceProduct,
                 description: descriptionProduct,
-                image: "https://i.pravatar.cc",
-                category: "electronic",
+                image: imageProduct,
+                category: productCategory,
               })
             );
             router.replace("/portal");
@@ -87,6 +91,7 @@ export default function AddProduct() {
             setTitleProduct("");
             setPriceProduct("");
             setDescriptionProduct("");
+            setProductCategory("")
           }}
         >
           Cancel
@@ -104,10 +109,41 @@ export default function AddProduct() {
           padding={3}
         >
           <Grid item xs={12}>
-            {/* <Typography variant="h5" sx={{ fontWeight: "bold", py: 1 }}>
-              {currentProduct?.category}
-            </Typography> */}
-
+            <Grid
+              item
+              xs={12}
+              container
+              direction="row"
+              justifyContent="flex-start"
+            >
+              <FormControl sx={{ minWidth: 100 }}>
+                <Select
+                  sx={{
+                    alignItems: "center",
+                    height: 40,
+                    width: 170,
+                    backgroundColor: "white",
+                    borderColor: "white",
+                    color: "black",
+                  }}
+                  variant="outlined"
+                  id="status-select"
+                  value={productCategory}
+                  onChange={handleChangeProductCategory}
+                  displayEmpty
+                >
+                  <MenuItem value={""}>
+                    <Typography sx={{ color: "grey" }}>Filter</Typography>
+                  </MenuItem>
+                  {category?.map((value: any, index: number) => (
+                    <MenuItem key={index} value={value}>
+                      {" "}
+                      {value}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
             <Grid item xs={12} marginLeft={4} marginTop={3}>
               <Typography
                 variant="subtitle1"
@@ -163,7 +199,7 @@ export default function AddProduct() {
                 color="secondary.700"
                 fontWeight={"bold"}
               >
-                Image 
+                Image
               </Typography>
               <TextField
                 type="string"
@@ -207,7 +243,6 @@ export default function AddProduct() {
               />
             </Grid>
           </Grid>
-          
         </Grid>
       </Container>
     </>

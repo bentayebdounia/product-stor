@@ -10,7 +10,7 @@ export default function ProductCard({ product }: any) {
   const pathname = usePathname();
   return (
     <Card sx={{ width: 200, height: 300, m: 2 }}>
-      <CardActionArea>
+      
         <CardMedia
           component="img"
           height={100}
@@ -46,7 +46,7 @@ export default function ProductCard({ product }: any) {
             </Grid>
           </Grid>
         </CardContent>
-      </CardActionArea>
+      
       <CardActions sx={{height: 50}} >
         <Grid container>
           <Grid item xs={12}>

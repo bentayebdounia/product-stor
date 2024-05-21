@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { RootState } from "../../store";
 import TokenService from "./tokenService";
 import { fakeStoreApiUrls } from "../../../fakeStoreApiUrls";
 

@@ -14,13 +14,13 @@ import { Avatar, IconButton, Menu, MenuItem, Tooltip } from "@mui/material";
 import { logout } from "@/lib/features/authentication/authenticationThunks";
 import { useAppDispatch } from "@/lib/hook";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { updateProductSearchValue } from "@/lib/features/product/productSlice";
 function MenuUser(props: any) {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const handleDrawerOpen = () => {
-    props.setOpen(!props.open);
-  };
+
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
@@ -30,6 +30,7 @@ function MenuUser(props: any) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   return (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
@@ -66,7 +67,6 @@ function MenuUser(props: any) {
             textAlign="center"
             onClick={() => {
               dispatch(logout());
-              router.replace("/");
             }}
           >
             Logout
@@ -77,6 +77,18 @@ function MenuUser(props: any) {
   );
 }
 export default function AppAppBar() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [oldSearchTerm, setOldSearchTerm] = useState("");
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (searchTerm !== oldSearchTerm) {
+        setOldSearchTerm(searchTerm);
+        dispatch(updateProductSearchValue(searchTerm));
+      }
+    }, 1000);
+    return () => clearTimeout(delayDebounceFn);
+  }, [dispatch, oldSearchTerm, searchTerm]);
   return (
     <>
       <AppBar
@@ -90,22 +102,22 @@ export default function AppAppBar() {
             variant="h5"
             sx={{
               color: "black",
-
               paddingLeft: "10px",
             }}
           >
             Product Store
           </Typography>
-          <Link href={"/portal"} style={{textDecoration: "none"}} >
-          <Typography
-            sx={{
-              color: "black",
-              fontSize: "16px",
-              paddingLeft: 10,
-            }}
-          >
-            Home
-          </Typography></Link>
+          <Link href={"/portal"} style={{ textDecoration: "none" }}>
+            <Typography
+              sx={{
+                color: "black",
+                fontSize: "16px",
+                paddingLeft: 10,
+              }}
+            >
+              Home
+            </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }} />
 
           <Search>
@@ -113,6 +125,9 @@ export default function AppAppBar() {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
               placeholder="search"
               inputProps={{ "aria-label": "search" }}
             />

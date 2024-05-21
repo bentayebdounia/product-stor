@@ -31,13 +31,18 @@ const authSlice = createSlice({
           refresh_token: payload.refresh_token,
         });
         state.access_token = TokenService.getToken()!.access_token;
-        
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = `${payload}`;
       })
-     
+      .addCase(logout.fulfilled, (state, action) => {
+        state.access_token =
+          TokenService.getToken() != null
+            ? TokenService.getToken()!.access_token
+            : "";
+       
+      });
   },
 });
 export default authSlice.reducer;

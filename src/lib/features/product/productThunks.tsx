@@ -7,16 +7,14 @@ export const fetchAllProduct = createAsyncThunk(
   "product/getAll",
   async (_, thunkConfig) => {
     const state = thunkConfig.getState() as RootState;
+    
     try {
-      const response = await axios.get(
-        `${fakeStoreApiUrls.PRODUCT_URL}/`,
-        {
-          headers: {
-            Accept: `application/json`,
-            Authorization: `Bearer ${state.authentication.access_token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${fakeStoreApiUrls.PRODUCT_URL}/`, {
+        headers: {
+          Accept: `application/json`,
+          Authorization: `Bearer ${state.authentication.access_token}`,
+        },
+      });
 
       if (response.status == 200) {
         return response.data;
@@ -26,7 +24,6 @@ export const fetchAllProduct = createAsyncThunk(
     } catch (error: any) {
       return thunkConfig.rejectWithValue(error.message);
     }
-  
   }
 );
 
@@ -60,13 +57,17 @@ export const createNewProduct = createAsyncThunk(
   async (data: any, thunkConfig) => {
     const state = thunkConfig.getState() as RootState;
     try {
-      const response = await axios.post(`${fakeStoreApiUrls.PRODUCT_URL}/`, data, {
-        headers: {
-          // Accept: `application/json`,
-          Authorization: `Bearer ${state.authentication.access_token}`,
-        },
-      });
-      if (response.status == 201) {
+      const response = await axios.post(
+        `${fakeStoreApiUrls.PRODUCT_URL}/`,
+        data,
+        {
+          headers: {
+            // Accept: `application/json`,
+            Authorization: `Bearer ${state.authentication.access_token}`,
+          },
+        }
+      );
+      if (response.status == 200) {
         return response.data;
       } else {
         return thunkConfig.rejectWithValue("error");
@@ -92,9 +93,7 @@ export const updateProduct = createAsyncThunk(
           },
         }
       );
-      await thunkConfig.dispatch(
-        fetchAllProductById(data.id)
-      );
+      await thunkConfig.dispatch(fetchAllProductById(data.id));
 
       if (response.status == 200) {
         return response.data;
@@ -121,9 +120,33 @@ export const deleteProduct = createAsyncThunk(
           },
         }
       );
-      await thunkConfig.dispatch(
-        fetchAllProduct()
-      );
+      await thunkConfig.dispatch(fetchAllProduct());
+
+      if (response.status == 200) {
+        return response.data;
+      } else {
+        return thunkConfig.rejectWithValue("error");
+      }
+    } catch (error: any) {
+      return thunkConfig.rejectWithValue(error.message);
+    }
+  }
+);
+
+
+export const fetchProductsCategory = createAsyncThunk(
+  "product/byCategory",
+  async (nameCategory:string, thunkConfig) => {
+    const state = thunkConfig.getState() as RootState;
+   
+        
+    try {
+      const response = await axios.get(`${fakeStoreApiUrls.PRODUCT_URL}/category/${nameCategory}`, {
+        headers: {
+          Accept: `application/json`,
+          Authorization: `Bearer ${state.authentication.access_token}`,
+        },
+      });
 
       if (response.status == 200) {
         return response.data;
