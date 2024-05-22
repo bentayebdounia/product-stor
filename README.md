@@ -44,6 +44,20 @@ Product Store is a web application built with the Next.js framework and Material
 ## API Integration
 The application interacts with the Fake Store API to simulate CRUD operations and fetch product data. Note that while the API responds with status 200 for create, update, and delete operations, no actual changes are made to the database.
 
+-  Login
+
+```javascript
+fetch('https://fakestoreapi.com/auth/login',{
+            method:'POST',
+            body:JSON.stringify({
+                username: "mor_2314",
+                password: "83r5^_"
+            })
+        })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+
 - Get All Products
 
 ```javascript
