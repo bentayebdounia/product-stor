@@ -1,36 +1,123 @@
-This is a [Next.js](https://nextjs.org/) project matrial ui with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Product Store
 
-## Getting Started
+## Overview
+Product Store is a web application built with the Next.js framework and Material-UI (MUI) for the frontend. The application uses Redux for state management and integrates with the [Fake Store API](https://fakestoreapi.com/) to simulate a fully functional e-commerce store. This project demonstrates basic CRUD operations, product filtering, and search functionalities.
 
-First, run the development server:
+## Features
+- **View Products**: Browse a list of all available products.
+- **Filter by Category**: Narrow down products by specific categories.
+- **Search Products**: Search for products by name or description.
+- **View Product Details**: See detailed information about a specific product.
+- **Simulated CRUD Operations**: Create, update, and delete products with simulated responses.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Installation
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/bentayebdounia/product-store-web.git
+   cd product-store
+2. **Install Dependencies**
+   ```bash
+   npm install
+3. ***Run the Development Server***
+   ```bash
+   npm run dev
+
+  The application will be available at http://localhost:3000.
+## Usage
+### Viewing Products
+* Access the homepage to see a list of all products.
+* Click on any product to view its details.
+### Filtering by Category
+* Use the category filter to display products within a selected category.
+### Searching for Products
+* Use the search bar to find products by entering keywords related to the product name or description.
+### Product Details
+* Click on a product to view more information, including its price, description, and category.
+### CRUD Operations
+- Create: Add a new product (response will simulate success but will not affect the actual database).
+- Update: Edit an existing product (response will simulate success but will not affect the actual database).
+- Delete: Remove a product (response will simulate success but will not affect the actual database).
+## API Integration
+The application interacts with the Fake Store API to simulate CRUD operations and fetch product data. Note that while the API responds with status 200 for create, update, and delete operations, no actual changes are made to the database.
+
+- Get All Products
+
+```javascript
+fetch('https://fakestoreapi.com/products')
+  .then(res => res.json())
+  .then(json => console.log(json));
 ```
+- Filter Products by Category
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```javascript
+fetch(`https://fakestoreapi.com/products/category/${category}`)
+  .then(res => res.json())
+  .then(json => console.log(json));
+```
+- Search Products
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+  - Implemented client-side filtering based on the product list fetched from the API.
+- View Product Details
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```javascript
+fetch(`https://fakestoreapi.com/products/${productId}`)
+  .then(res => res.json())
+  .then(json => console.log(json));
+ ```
+- Create Product
 
-## Learn More
+```javascript
+fetch('https://fakestoreapi.com/products', {
+    method: "POST",
+    body: JSON.stringify(
+        {
+            title: 'test product',
+            price: 13.5,
+            description: 'lorem ipsum set',
+            image: 'https://i.pravatar.cc',
+            category: 'electronic'
+        }
+    )
+})
+  .then(res => res.json())
+  .then(json => console.log(json));
+```
+- Update Product
 
-To learn more about Next.js, take a look at the following resources:
+```javascript
+fetch('https://fakestoreapi.com/products/7', {
+    method: "PUT",
+    body: JSON.stringify(
+        {
+            title: 'updated product',
+            price: 15,
+            description: 'updated description',
+            image: 'https://i.pravatar.cc',
+            category: 'electronic'
+        }
+    )
+})
+  .then(res => res.json())
+  .then(json => console.log(json));
+```
+- Delete Product
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```javascript
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+fetch('https://fakestoreapi.com/products/7', {
+    method: "DELETE"
+})
+  .then(res => res.json())
+  .then(json => console.log(json));
+```
+## Technologies Used
+- Next.js: Framework for server-rendered React applications.
+- Material-UI (MUI): React components for faster and easier web development.
+- Redux: State management for predictable state container.
+- Fake Store API: Mock API for simulating e-commerce functionalities.
+## Contributing
+Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### License
+This project is licensed under the MIT License. See the LICENSE file for details.
