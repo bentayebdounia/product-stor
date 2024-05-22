@@ -116,8 +116,4 @@ fetch('https://fakestoreapi.com/products/7', {
 - Material-UI (MUI): React components for faster and easier web development.
 - Redux: State management for predictable state container.
 - Fake Store API: Mock API for simulating e-commerce functionalities.
-## Contributing
-Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
-### License
-This project is licensed under the MIT License. See the LICENSE file for details.
