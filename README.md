@@ -4,6 +4,7 @@
 Product Store is a web application built with the Next.js framework and Material-UI (MUI) for the frontend. The application uses Redux for state management and integrates with the [Fake Store API](https://fakestoreapi.com/) to simulate a fully functional e-commerce store. This project demonstrates basic CRUD operations, product filtering, and search functionalities.
 
 ## Features
+-**Login and Authentication: Users can log in to the application and maintain an authenticated session.
 - **View Products**: Browse a list of all available products.
 - **Filter by Category**: Narrow down products by specific categories.
 - **Search Products**: Search for products by name or description.
@@ -25,6 +26,8 @@ Product Store is a web application built with the Next.js framework and Material
 
   The application will be available at http://localhost:3000.
 ## Usage
+### Login and authentication 
+* Add username and password 
 ### Viewing Products
 * Access the homepage to see a list of all products.
 * Click on any product to view its details.
