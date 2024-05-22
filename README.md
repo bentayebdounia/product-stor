@@ -4,7 +4,7 @@
 Product Store is a web application built with the Next.js framework and Material-UI (MUI) for the frontend. The application uses Redux for state management and integrates with the [Fake Store API](https://fakestoreapi.com/) to simulate a fully functional e-commerce store. This project demonstrates basic CRUD operations, product filtering, and search functionalities.
 
 ## Features
--**Login and Authentication: Users can log in to the application and maintain an authenticated session.
+- **Login and Authentication: Users can log in to the application and maintain an authenticated session.
 - **View Products**: Browse a list of all available products.
 - **Filter by Category**: Narrow down products by specific categories.
 - **Search Products**: Search for products by name or description.
@@ -38,9 +38,9 @@ Product Store is a web application built with the Next.js framework and Material
 ### Product Details
 * Click on a product to view more information, including its price, description, and category.
 ### CRUD Operations
-- Create: Add a new product (response will simulate success but will not affect the actual database).
-- Update: Edit an existing product (response will simulate success but will not affect the actual database).
-- Delete: Remove a product (response will simulate success but will not affect the actual database).
+- **Create: Add a new product (response will simulate success but will not affect the actual database).
+- **Update: Edit an existing product (response will simulate success but will not affect the actual database).
+- **Delete: Remove a product (response will simulate success but will not affect the actual database).
 ## API Integration
 The application interacts with the Fake Store API to simulate CRUD operations and fetch product data. Note that while the API responds with status 200 for create, update, and delete operations, no actual changes are made to the database.
 
@@ -115,8 +115,8 @@ fetch('https://fakestoreapi.com/products/7', {
   .then(json => console.log(json));
 ```
 ## Technologies Used
-- Next.js: Framework for server-rendered React applications.
-- Material-UI (MUI): React components for faster and easier web development.
-- Redux: State management for predictable state container.
-- Fake Store API: Mock API for simulating e-commerce functionalities.
+- **Next.js: Framework for server-rendered React applications.
+- **Material-UI (MUI): React components for faster and easier web development.
+- **Redux: State management for predictable state container.
+- **Fake Store API: Mock API for simulating e-commerce functionalities.
 
